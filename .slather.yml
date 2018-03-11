@@ -1,0 +1,11 @@
+# .slather.yml
+
+coverage_service: cobertura_xml
+workspace: SwiftyProxyKit.xcodeworkspace
+xcodeproj: SwiftyProxyKit.xcodeproj
+scheme: SwiftyProxyKit
+configuration: Debug
+source_directory: SwiftyProxyKit
+output_directory: test/xml_report
+ignore:
+  - Pods/*
