@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B11CF47862D41A1A5DDAAB9 /* Pods_SwiftyProxyKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B75146F6BE16BF6AF3448E7 /* Pods_SwiftyProxyKitTests.framework */; };
+		9CC993BB260D30017EF04A2B /* Pods_SwiftyProxyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00680490B2BBB5478E80149C /* Pods_SwiftyProxyKit.framework */; };
 		A4038D452055DB2300A64C3D /* SwiftyProxyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4038D3B2055DB2300A64C3D /* SwiftyProxyKit.framework */; };
 		A4038D4A2055DB2300A64C3D /* SwiftyProxyKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4038D492055DB2300A64C3D /* SwiftyProxyKitTests.swift */; };
 		A4038D4C2055DB2300A64C3D /* SwiftyProxyKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A4038D3E2055DB2300A64C3D /* SwiftyProxyKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,12 +25,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00680490B2BBB5478E80149C /* Pods_SwiftyProxyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyProxyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CAFDF62EC745C41DE694466 /* Pods-SwiftyProxyKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyProxyKitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyProxyKitTests/Pods-SwiftyProxyKitTests.release.xcconfig"; sourceTree = "<group>"; };
+		7D368CB426DE3C13AB294EF5 /* Pods-SwiftyProxyKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyProxyKitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyProxyKitTests/Pods-SwiftyProxyKitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9B75146F6BE16BF6AF3448E7 /* Pods_SwiftyProxyKitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyProxyKitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4038D3B2055DB2300A64C3D /* SwiftyProxyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyProxyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4038D3E2055DB2300A64C3D /* SwiftyProxyKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyProxyKit.h; sourceTree = "<group>"; };
 		A4038D3F2055DB2300A64C3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4038D442055DB2300A64C3D /* SwiftyProxyKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyProxyKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4038D492055DB2300A64C3D /* SwiftyProxyKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyProxyKitTests.swift; sourceTree = "<group>"; };
 		A4038D4B2055DB2300A64C3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9CD9855D320442CDE91E201 /* Pods-SwiftyProxyKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyProxyKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyProxyKit/Pods-SwiftyProxyKit.release.xcconfig"; sourceTree = "<group>"; };
+		E082961EC251FAE9FF89A53C /* Pods-SwiftyProxyKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyProxyKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyProxyKit/Pods-SwiftyProxyKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CC993BB260D30017EF04A2B /* Pods_SwiftyProxyKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,18 +53,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4038D452055DB2300A64C3D /* SwiftyProxyKit.framework in Frameworks */,
+				0B11CF47862D41A1A5DDAAB9 /* Pods_SwiftyProxyKitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		219AA94DF6450CB21BA11A13 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E082961EC251FAE9FF89A53C /* Pods-SwiftyProxyKit.debug.xcconfig */,
+				D9CD9855D320442CDE91E201 /* Pods-SwiftyProxyKit.release.xcconfig */,
+				7D368CB426DE3C13AB294EF5 /* Pods-SwiftyProxyKitTests.debug.xcconfig */,
+				2CAFDF62EC745C41DE694466 /* Pods-SwiftyProxyKitTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A4038D312055DB2300A64C3D = {
 			isa = PBXGroup;
 			children = (
 				A4038D3D2055DB2300A64C3D /* SwiftyProxyKit */,
 				A4038D482055DB2300A64C3D /* SwiftyProxyKitTests */,
 				A4038D3C2055DB2300A64C3D /* Products */,
+				219AA94DF6450CB21BA11A13 /* Pods */,
+				CD4CBFF8C32C5BEC8AB14CFA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +109,15 @@
 			path = SwiftyProxyKitTests;
 			sourceTree = "<group>";
 		};
+		CD4CBFF8C32C5BEC8AB14CFA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				00680490B2BBB5478E80149C /* Pods_SwiftyProxyKit.framework */,
+				9B75146F6BE16BF6AF3448E7 /* Pods_SwiftyProxyKitTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -104,10 +136,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A4038D4F2055DB2300A64C3D /* Build configuration list for PBXNativeTarget "SwiftyProxyKit" */;
 			buildPhases = (
+				430DD6B2305BCCA06D83536E /* [CP] Check Pods Manifest.lock */,
 				A4038D362055DB2300A64C3D /* Sources */,
 				A4038D372055DB2300A64C3D /* Frameworks */,
 				A4038D382055DB2300A64C3D /* Headers */,
 				A4038D392055DB2300A64C3D /* Resources */,
+				76C4623E3B68BF38B5D22126 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -122,9 +156,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A4038D522055DB2300A64C3D /* Build configuration list for PBXNativeTarget "SwiftyProxyKitTests" */;
 			buildPhases = (
+				0E28F0514A05D75F095865E9 /* [CP] Check Pods Manifest.lock */,
 				A4038D402055DB2300A64C3D /* Sources */,
 				A4038D412055DB2300A64C3D /* Frameworks */,
 				A4038D422055DB2300A64C3D /* Resources */,
+				630F560D23C4B276520744DB /* [CP] Embed Pods Frameworks */,
+				04F4061BBA750842AC95C033 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -190,6 +227,95 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		04F4061BBA750842AC95C033 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyProxyKitTests/Pods-SwiftyProxyKitTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0E28F0514A05D75F095865E9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwiftyProxyKitTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		430DD6B2305BCCA06D83536E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwiftyProxyKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		630F560D23C4B276520744DB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyProxyKitTests/Pods-SwiftyProxyKitTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyProxyKitTests/Pods-SwiftyProxyKitTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76C4623E3B68BF38B5D22126 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyProxyKit/Pods-SwiftyProxyKit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A4038D362055DB2300A64C3D /* Sources */ = {
@@ -333,6 +459,7 @@
 		};
 		A4038D502055DB2300A64C3D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E082961EC251FAE9FF89A53C /* Pods-SwiftyProxyKit.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -353,6 +480,7 @@
 		};
 		A4038D512055DB2300A64C3D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9CD9855D320442CDE91E201 /* Pods-SwiftyProxyKit.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -373,6 +501,7 @@
 		};
 		A4038D532055DB2300A64C3D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D368CB426DE3C13AB294EF5 /* Pods-SwiftyProxyKitTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SwiftyProxyKitTests/Info.plist;
@@ -386,6 +515,7 @@
 		};
 		A4038D542055DB2300A64C3D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2CAFDF62EC745C41DE694466 /* Pods-SwiftyProxyKitTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SwiftyProxyKitTests/Info.plist;

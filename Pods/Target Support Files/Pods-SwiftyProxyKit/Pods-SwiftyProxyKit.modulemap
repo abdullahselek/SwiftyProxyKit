@@ -1,0 +1,6 @@
+framework module Pods_SwiftyProxyKit {
+  umbrella header "Pods-SwiftyProxyKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
