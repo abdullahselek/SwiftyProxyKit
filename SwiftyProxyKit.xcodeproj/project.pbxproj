@@ -12,6 +12,8 @@
 		A4038D452055DB2300A64C3D /* SwiftyProxyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4038D3B2055DB2300A64C3D /* SwiftyProxyKit.framework */; };
 		A4038D4A2055DB2300A64C3D /* SwiftyProxyKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4038D492055DB2300A64C3D /* SwiftyProxyKitTests.swift */; };
 		A4038D4C2055DB2300A64C3D /* SwiftyProxyKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A4038D3E2055DB2300A64C3D /* SwiftyProxyKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A4038D572057349D00A64C3D /* SwiftyProxyServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4038D562057349D00A64C3D /* SwiftyProxyServer.swift */; };
+		A4038D59205735BB00A64C3D /* SwiftyProxyServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4038D58205735BB00A64C3D /* SwiftyProxyServerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,8 @@
 		A4038D442055DB2300A64C3D /* SwiftyProxyKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyProxyKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4038D492055DB2300A64C3D /* SwiftyProxyKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyProxyKitTests.swift; sourceTree = "<group>"; };
 		A4038D4B2055DB2300A64C3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4038D562057349D00A64C3D /* SwiftyProxyServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyProxyServer.swift; sourceTree = "<group>"; };
+		A4038D58205735BB00A64C3D /* SwiftyProxyServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyProxyServerTests.swift; sourceTree = "<group>"; };
 		D9CD9855D320442CDE91E201 /* Pods-SwiftyProxyKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyProxyKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyProxyKit/Pods-SwiftyProxyKit.release.xcconfig"; sourceTree = "<group>"; };
 		E082961EC251FAE9FF89A53C /* Pods-SwiftyProxyKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyProxyKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyProxyKit/Pods-SwiftyProxyKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				A4038D3E2055DB2300A64C3D /* SwiftyProxyKit.h */,
+				A4038D552057342200A64C3D /* Server */,
 				A4038D3F2055DB2300A64C3D /* Info.plist */,
 			);
 			path = SwiftyProxyKit;
@@ -105,8 +110,17 @@
 			children = (
 				A4038D492055DB2300A64C3D /* SwiftyProxyKitTests.swift */,
 				A4038D4B2055DB2300A64C3D /* Info.plist */,
+				A4038D58205735BB00A64C3D /* SwiftyProxyServerTests.swift */,
 			);
 			path = SwiftyProxyKitTests;
+			sourceTree = "<group>";
+		};
+		A4038D552057342200A64C3D /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				A4038D562057349D00A64C3D /* SwiftyProxyServer.swift */,
+			);
+			path = Server;
 			sourceTree = "<group>";
 		};
 		CD4CBFF8C32C5BEC8AB14CFA /* Frameworks */ = {
@@ -185,6 +199,7 @@
 				TargetAttributes = {
 					A4038D3A2055DB2300A64C3D = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					A4038D432055DB2300A64C3D = {
@@ -322,6 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4038D572057349D00A64C3D /* SwiftyProxyServer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4038D4A2055DB2300A64C3D /* SwiftyProxyKitTests.swift in Sources */,
+				A4038D59205735BB00A64C3D /* SwiftyProxyServerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +480,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E082961EC251FAE9FF89A53C /* Pods-SwiftyProxyKit.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -475,6 +493,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.abdullahselek.SwiftyProxyKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -484,6 +503,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D9CD9855D320442CDE91E201 /* Pods-SwiftyProxyKit.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -505,6 +525,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7D368CB426DE3C13AB294EF5 /* Pods-SwiftyProxyKitTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SwiftyProxyKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -519,6 +540,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2CAFDF62EC745C41DE694466 /* Pods-SwiftyProxyKitTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SwiftyProxyKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
