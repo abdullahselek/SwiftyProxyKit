@@ -10,7 +10,6 @@
 		0B11CF47862D41A1A5DDAAB9 /* Pods_SwiftyProxyKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B75146F6BE16BF6AF3448E7 /* Pods_SwiftyProxyKitTests.framework */; };
 		9CC993BB260D30017EF04A2B /* Pods_SwiftyProxyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00680490B2BBB5478E80149C /* Pods_SwiftyProxyKit.framework */; };
 		A4038D452055DB2300A64C3D /* SwiftyProxyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4038D3B2055DB2300A64C3D /* SwiftyProxyKit.framework */; };
-		A4038D4A2055DB2300A64C3D /* SwiftyProxyKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4038D492055DB2300A64C3D /* SwiftyProxyKitTests.swift */; };
 		A4038D4C2055DB2300A64C3D /* SwiftyProxyKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A4038D3E2055DB2300A64C3D /* SwiftyProxyKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A4038D572057349D00A64C3D /* SwiftyProxyServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4038D562057349D00A64C3D /* SwiftyProxyServer.swift */; };
 		A4038D59205735BB00A64C3D /* SwiftyProxyServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4038D58205735BB00A64C3D /* SwiftyProxyServerTests.swift */; };
@@ -35,7 +34,6 @@
 		A4038D3E2055DB2300A64C3D /* SwiftyProxyKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyProxyKit.h; sourceTree = "<group>"; };
 		A4038D3F2055DB2300A64C3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4038D442055DB2300A64C3D /* SwiftyProxyKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyProxyKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4038D492055DB2300A64C3D /* SwiftyProxyKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyProxyKitTests.swift; sourceTree = "<group>"; };
 		A4038D4B2055DB2300A64C3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4038D562057349D00A64C3D /* SwiftyProxyServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyProxyServer.swift; sourceTree = "<group>"; };
 		A4038D58205735BB00A64C3D /* SwiftyProxyServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyProxyServerTests.swift; sourceTree = "<group>"; };
@@ -108,9 +106,8 @@
 		A4038D482055DB2300A64C3D /* SwiftyProxyKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				A4038D492055DB2300A64C3D /* SwiftyProxyKitTests.swift */,
-				A4038D4B2055DB2300A64C3D /* Info.plist */,
 				A4038D58205735BB00A64C3D /* SwiftyProxyServerTests.swift */,
+				A4038D4B2055DB2300A64C3D /* Info.plist */,
 			);
 			path = SwiftyProxyKitTests;
 			sourceTree = "<group>";
@@ -345,7 +342,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4038D4A2055DB2300A64C3D /* SwiftyProxyKitTests.swift in Sources */,
 				A4038D59205735BB00A64C3D /* SwiftyProxyServerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
