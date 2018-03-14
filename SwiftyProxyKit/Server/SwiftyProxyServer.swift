@@ -26,6 +26,7 @@ open class SwiftyProxyServer {
 
     open static let shared = SwiftyProxyServer()
     let incomingRequests: CFMutableDictionary
+    var fileHandler: FileHandle?
     
     private init() {
         var keyCallbacks = kCFTypeDictionaryKeyCallBacks
@@ -34,6 +35,26 @@ open class SwiftyProxyServer {
                                                      0,
                                                      &keyCallbacks,
                                                      &valueCallbacks);
+    }
+
+    @objc internal func receiveIncomingConnectionNotification(notification: NSNotification) {
+        guard let userInfo = notification.userInfo as? [String: FileHandle], let incomingFileHandle = userInfo[NSFileHandleNotificationFileHandleItem] else {
+            return
+        }
+        let message = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, true).takeRetainedValue()
+        CFDictionaryAddValue(incomingRequests, Unmanaged.passUnretained(incomingFileHandle).toOpaque(), Unmanaged.passUnretained(message).toOpaque())
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(SwiftyProxyServer.receiveIncomingDataNotification(notification:)),
+                                               name: Notification.Name.NSFileHandleDataAvailable,
+                                               object: incomingFileHandle)
+        incomingFileHandle.waitForDataInBackgroundAndNotify()
+        if let fileHandler = fileHandler {
+            fileHandler.acceptConnectionInBackgroundAndNotify()
+        }
+    }
+
+    @objc func receiveIncomingDataNotification(notification: NSNotification) {
+
     }
 
 }
