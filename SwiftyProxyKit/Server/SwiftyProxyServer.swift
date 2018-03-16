@@ -56,5 +56,21 @@ open class SwiftyProxyServer {
     @objc func receiveIncomingDataNotification(notification: NSNotification) {
 
     }
+    
+    internal func requestType(fileHandle: FileHandle, incomingRequests: CFMutableDictionary) -> String? {
+        guard let incomingRequest = CFDictionaryGetValue(incomingRequests, Unmanaged.passUnretained(fileHandle).toOpaque()) else {
+            return nil
+        }
+        guard let httpHeaderFields = CFHTTPMessageCopyAllHeaderFields(incomingRequest as! CFHTTPMessage) else {
+            return nil
+        }
+        guard var rawPointer = CFDictionaryGetValue((httpHeaderFields as! CFDictionary), "RequestType") else {
+            return nil
+        }
+        let requestType = withUnsafePointer(to: &rawPointer) { ptr -> String in
+            return String(cString: UnsafeRawPointer(ptr).assumingMemoryBound(to: CChar.self))
+        }
+        return requestType
+    }
 
 }
