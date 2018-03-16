@@ -57,6 +57,15 @@ open class SwiftyProxyServer {
 
     }
     
+    internal func stopReceiving(incomingFileHandle: FileHandle, stopHandling: Bool) {
+        if stopHandling {
+            print("SwiftyProxyServer: File closed and Incoming Request removed! \(requestType(fileHandle: incomingFileHandle, incomingRequests: incomingRequests) ??  "")")
+            incomingFileHandle.closeFile()
+        }
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.NSFileHandleDataAvailable, object: incomingFileHandle)
+        CFDictionaryRemoveValue(incomingRequests, Unmanaged.passUnretained(incomingFileHandle).toOpaque())
+    }
+    
     internal func requestType(fileHandle: FileHandle, incomingRequests: CFMutableDictionary) -> String? {
         guard let incomingRequest = CFDictionaryGetValue(incomingRequests, Unmanaged.passUnretained(fileHandle).toOpaque()) else {
             return nil
