@@ -25,7 +25,7 @@
 open class SwiftyProxyServer {
 
     open static let shared = SwiftyProxyServer()
-    let incomingRequests: CFMutableDictionary
+    internal let incomingRequests: CFMutableDictionary
     var fileHandler: FileHandle?
     
     private init() {
