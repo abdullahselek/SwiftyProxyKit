@@ -25,16 +25,11 @@
 open class SwiftyProxyServer {
 
     open static let shared = SwiftyProxyServer()
-    internal let incomingRequests: CFMutableDictionary
+    internal var incomingRequests: [FileHandle: CFHTTPMessage]
     var fileHandler: FileHandle?
     
     private init() {
-        var keyCallbacks = kCFTypeDictionaryKeyCallBacks
-        var valueCallbacks = kCFTypeDictionaryValueCallBacks
-        incomingRequests = CFDictionaryCreateMutable(kCFAllocatorDefault,
-                                                     0,
-                                                     &keyCallbacks,
-                                                     &valueCallbacks);
+        incomingRequests = [FileHandle: CFHTTPMessage]()
     }
 
     @objc internal func receiveIncomingConnectionNotification(notification: NSNotification) {
@@ -42,7 +37,7 @@ open class SwiftyProxyServer {
             return
         }
         let message = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, true).takeRetainedValue()
-        CFDictionaryAddValue(incomingRequests, Unmanaged.passUnretained(incomingFileHandle).toOpaque(), Unmanaged.passUnretained(message).toOpaque())
+        incomingRequests[incomingFileHandle] = message
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(SwiftyProxyServer.receiveIncomingDataNotification(notification:)),
                                                name: Notification.Name.NSFileHandleDataAvailable,
@@ -63,17 +58,17 @@ open class SwiftyProxyServer {
             incomingFileHandle.closeFile()
         }
         NotificationCenter.default.removeObserver(self, name: Notification.Name.NSFileHandleDataAvailable, object: incomingFileHandle)
-        CFDictionaryRemoveValue(incomingRequests, Unmanaged.passUnretained(incomingFileHandle).toOpaque())
+        incomingRequests[incomingFileHandle] = nil
     }
     
-    internal func requestType(fileHandle: FileHandle, incomingRequests: CFMutableDictionary) -> String? {
-        guard let incomingRequest = CFDictionaryGetValue(incomingRequests, Unmanaged.passUnretained(fileHandle).toOpaque()) else {
+    internal func requestType(fileHandle: FileHandle, incomingRequests: [FileHandle: CFHTTPMessage]) -> String? {
+        guard let incomingRequest = incomingRequests[fileHandle] else {
             return nil
         }
-        guard let httpHeaderFields = CFHTTPMessageCopyAllHeaderFields(incomingRequest as! CFHTTPMessage) else {
+        guard let httpHeaderFields = CFHTTPMessageCopyAllHeaderFields(incomingRequest) else {
             return nil
         }
-        guard var rawPointer = CFDictionaryGetValue((httpHeaderFields as! CFDictionary), "RequestType") else {
+        guard var rawPointer = CFDictionaryGetValue(httpHeaderFields.takeRetainedValue(), "RequestType") else {
             return nil
         }
         let requestType = withUnsafePointer(to: &rawPointer) { ptr -> String in

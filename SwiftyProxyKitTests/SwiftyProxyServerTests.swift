@@ -40,8 +40,27 @@ class SwiftyProxyServerTests: QuickSpec {
                     }
 
                     it("adds file handle to incoming requests", closure: {
-                        let incomingRequest = CFDictionaryGetValue(proxyServer.incomingRequests, Unmanaged.passUnretained(fileHandle).toOpaque());
+                        let incomingRequest = proxyServer.incomingRequests[fileHandle]
                         expect(incomingRequest).notTo(beNil())
+                    })
+                })
+            })
+
+            describe("SwiftyProxyServer.stopReceiving(incomingFileHandle:stopHandling:)", {
+                context("when stopHandling set as true", {
+                    let fileHandle = FileHandle(fileDescriptor: 10, closeOnDealloc: true)
+                    let fakeNotification = NSNotification(name: Notification.Name.NSFileHandleDataAvailable,
+                                                          object: nil,
+                                                          userInfo: [NSFileHandleNotificationFileHandleItem: fileHandle])
+                    
+                    beforeEach {
+                        proxyServer.receiveIncomingConnectionNotification(notification: fakeNotification)
+                        proxyServer.stopReceiving(incomingFileHandle: fileHandle, stopHandling: true)
+                    }
+
+                    it("stops handling and removes file handle", closure: {
+                        let incomingRequest = proxyServer.incomingRequests[fileHandle]
+                        expect(incomingRequest).to(beNil())
                     })
                 })
             })
