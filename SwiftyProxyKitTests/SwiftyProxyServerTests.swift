@@ -19,6 +19,7 @@ class SwiftyProxyServerTests: QuickSpec {
             
             beforeSuite {
                 proxyServer = SwiftyProxyServer.shared
+                proxyServer.fileHandler = FileHandle(fileDescriptor: 1, closeOnDealloc: true)
             }
             
             context("SwiftyProxyServer.init()", {
@@ -62,6 +63,13 @@ class SwiftyProxyServerTests: QuickSpec {
                         let incomingRequest = proxyServer.incomingRequests[fileHandle]
                         expect(incomingRequest).to(beNil())
                     })
+                })
+            })
+
+            context("SwiftyProxyServer.start()", {
+                it("starts", closure: {
+                    let isStarted = proxyServer.start()
+                    expect(isStarted).to(beTrue())
                 })
             })
         }

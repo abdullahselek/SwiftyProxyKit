@@ -25,11 +25,48 @@
 open class SwiftyProxyServer {
 
     open static let shared = SwiftyProxyServer()
+    internal var socket: CFSocket!
     internal var incomingRequests: [FileHandle: CFHTTPMessage]
-    var fileHandler: FileHandle?
+    internal var fileHandler: FileHandle!
     
     private init() {
         incomingRequests = [FileHandle: CFHTTPMessage]()
+    }
+    
+    open func start() -> Bool {
+        guard let socket = CFSocketCreate(kCFAllocatorDefault, PF_INET, SOCK_STREAM, IPPROTO_TCP, 0, nil, nil) else {
+            print("SwiftyProxyServer unable to create socket.")
+            return false
+        }
+        var reuse = true
+        let fileDescriptor = CFSocketGetNative(socket)
+        if (setsockopt(fileDescriptor, SOL_SOCKET, SO_REUSEADDR, &reuse, socklen_t(MemoryLayout<Int>.size)) != 0) {
+            print("SwiftyProxyServer unable to set socket options.")
+            return false
+        }
+
+        var address = sockaddr_in()
+        memset(&address, 0, MemoryLayout<sockaddr_in>.size)
+        address.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
+        address.sin_family = sa_family_t(AF_INET)
+        address.sin_addr.s_addr = CFSwapInt32HostToBig(INADDR_ANY)
+        address.sin_port = in_port_t(8080)
+
+        let addressData = NSData(bytes: &address, length: MemoryLayout.size(ofValue: address))
+        let error = CFSocketSetAddress(socket, addressData as CFData)
+        if error != .success {
+            print("SwiftyProxyServer unable to bind socket to address.")
+            return false
+        }
+
+        fileHandler = FileHandle(fileDescriptor: fileDescriptor, closeOnDealloc: true)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(SwiftyProxyServer.receiveIncomingConnectionNotification(notification:)),
+                                               name: Notification.Name.NSFileHandleConnectionAccepted,
+                                               object: nil)
+        fileHandler.acceptConnectionInBackgroundAndNotify()
+        print("SwiftyProxyServer started at port 8080!")
+        return true
     }
 
     @objc internal func receiveIncomingConnectionNotification(notification: NSNotification) {
@@ -43,9 +80,7 @@ open class SwiftyProxyServer {
                                                name: Notification.Name.NSFileHandleDataAvailable,
                                                object: incomingFileHandle)
         incomingFileHandle.waitForDataInBackgroundAndNotify()
-        if let fileHandler = fileHandler {
-            fileHandler.acceptConnectionInBackgroundAndNotify()
-        }
+        fileHandler.acceptConnectionInBackgroundAndNotify()
     }
 
     @objc func receiveIncomingDataNotification(notification: NSNotification) {
