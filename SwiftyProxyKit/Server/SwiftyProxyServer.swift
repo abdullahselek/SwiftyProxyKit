@@ -38,6 +38,7 @@ open class SwiftyProxyServer {
             print("SwiftyProxyServer unable to create socket.")
             return false
         }
+        self.socket = socket
         var reuse = true
         let fileDescriptor = CFSocketGetNative(socket)
         if (setsockopt(fileDescriptor, SOL_SOCKET, SO_REUSEADDR, &reuse, socklen_t(MemoryLayout<Int>.size)) != 0) {
@@ -67,6 +68,21 @@ open class SwiftyProxyServer {
         fileHandler.acceptConnectionInBackgroundAndNotify()
         print("SwiftyProxyServer started at port 8080!")
         return true
+    }
+    
+    open func stop() {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: Notification.Name.NSFileHandleConnectionAccepted,
+                                                  object: nil)
+        fileHandler.closeFile()
+
+        for incomingFileHandle in incomingRequests.keys {
+            print("SwiftyProxyServer stop receiving for fileHandle: \(requestType(fileHandle: incomingFileHandle, incomingRequests: incomingRequests) ?? "")")
+            stopReceiving(incomingFileHandle: incomingFileHandle, stopHandling: true)
+        }
+
+        CFSocketInvalidate(socket)
+        print("SwiftyProxyServer stopped!")
     }
 
     @objc internal func receiveIncomingConnectionNotification(notification: NSNotification) {

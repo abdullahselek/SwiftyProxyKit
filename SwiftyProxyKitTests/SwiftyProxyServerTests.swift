@@ -16,10 +16,11 @@ class SwiftyProxyServerTests: QuickSpec {
     override func spec() {
         describe("SwiftyProxyServer Tests") {
             var proxyServer: SwiftyProxyServer!
+            var isStarted = false
             
             beforeSuite {
                 proxyServer = SwiftyProxyServer.shared
-                proxyServer.fileHandler = FileHandle(fileDescriptor: 1, closeOnDealloc: true)
+                isStarted = proxyServer.start()
             }
             
             context("SwiftyProxyServer.init()", {
@@ -28,7 +29,13 @@ class SwiftyProxyServerTests: QuickSpec {
                     expect(proxyServer.incomingRequests).notTo(beNil())
                 })
             })
-            
+
+            context("SwiftyProxyServer.start()", {
+                it("starts", closure: {
+                    expect(isStarted).to(beTrue())
+                })
+            })
+
             describe("SwiftyProxyServer.receiveIncomingConnectionNotification(notification:)", {
                 context("when notification has a valid file handle", {
                     let fileHandle = FileHandle(fileDescriptor: 10, closeOnDealloc: true)
@@ -66,10 +73,19 @@ class SwiftyProxyServerTests: QuickSpec {
                 })
             })
 
-            context("SwiftyProxyServer.start()", {
-                it("starts", closure: {
-                    let isStarted = proxyServer.start()
-                    expect(isStarted).to(beTrue())
+            context("SwiftyProxyServer.stop()", {
+                let fileHandle = FileHandle(fileDescriptor: 10, closeOnDealloc: true)
+                let fakeNotification = NSNotification(name: Notification.Name.NSFileHandleDataAvailable,
+                                                      object: nil,
+                                                      userInfo: [NSFileHandleNotificationFileHandleItem: fileHandle])
+
+                beforeEach {
+                    proxyServer.receiveIncomingConnectionNotification(notification: fakeNotification)
+                    proxyServer.stop()
+                }
+
+                it("stops", closure: {
+                    expect(proxyServer.incomingRequests[fileHandle]).to(beNil())
                 })
             })
         }
