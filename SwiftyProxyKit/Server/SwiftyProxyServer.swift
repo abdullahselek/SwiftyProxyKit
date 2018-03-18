@@ -127,5 +127,36 @@ open class SwiftyProxyServer {
         }
         return requestType
     }
+    
+    internal func fileSize(fromPath path: String) -> String? {
+        var size: Any?
+        do {
+            size = try FileManager.default.attributesOfItem(atPath: path)[FileAttributeKey.size]
+        } catch (let error) {
+            print("SwiftyProxyServer file size error: \(error)")
+            return nil
+        }
+        guard let fileSize = size as? UInt64 else {
+            return nil
+        }
+        
+        // bytes
+        if fileSize < 1023 {
+            return String(format: "%lu bytes", CUnsignedLong(fileSize))
+        }
+        // KB
+        var floatSize = Float(fileSize / 1024)
+        if floatSize < 1023 {
+            return String(format: "%.1f KB", floatSize)
+        }
+        // MB
+        floatSize = floatSize / 1024
+        if floatSize < 1023 {
+            return String(format: "%.1f MB", floatSize)
+        }
+        // GB
+        floatSize = floatSize / 1024
+        return String(format: "%.1f GB", floatSize)
+    }
 
 }

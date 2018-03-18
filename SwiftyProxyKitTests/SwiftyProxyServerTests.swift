@@ -88,6 +88,18 @@ class SwiftyProxyServerTests: QuickSpec {
                     expect(proxyServer.incomingRequests[fileHandle]).to(beNil())
                 })
             })
+
+            context("SwiftyProxyServer.fileSize(fromPath:)", {
+                beforeEach {
+                    let data = "Abdullah Selek - SwiftyProxyServer".data(using: String.Encoding.utf8)!
+                    FileManager.default.createFile(atPath: "test.txt", contents: data, attributes: nil)
+                }
+                
+                it("returns formatted file size", closure: {
+                    let fileSize = proxyServer.fileSize(fromPath: "test.txt")
+                    expect(fileSize).notTo(beNil())
+                })
+            })
         }
     }
 
