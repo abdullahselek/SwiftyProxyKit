@@ -22,9 +22,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+public protocol SwiftyProxyServerDataSource: class {
+    func responseData() -> Data
+}
+
 open class SwiftyProxyServer {
 
     open static let shared = SwiftyProxyServer()
+    open var dataSource: SwiftyProxyServerDataSource?
     internal var socket: CFSocket!
     internal var incomingRequests: [FileHandle: CFHTTPMessage]
     internal var fileHandler: FileHandle!
