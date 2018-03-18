@@ -94,13 +94,47 @@ class SwiftyProxyServerTests: QuickSpec {
                     let data = "Abdullah Selek - SwiftyProxyServer".data(using: String.Encoding.utf8)!
                     FileManager.default.createFile(atPath: "test.txt", contents: data, attributes: nil)
                 }
-                
+
                 it("returns formatted file size", closure: {
                     let fileSize = proxyServer.fileSize(fromPath: "test.txt")
                     expect(fileSize).notTo(beNil())
                 })
             })
+
+            describe("SwiftyProxyServer.startResponse(fileHandle:)", {
+                var isStarted = false
+                let fileHandle = FileHandle(forWritingAtPath: "test.txt")!
+
+                context("when datasource hasn't been set", {
+                    beforeEach {
+                        isStarted = proxyServer.startResponse(fileHandle: fileHandle)
+                    }
+
+                    it("fails", closure: {
+                        expect(isStarted).to(beFalse())
+                    })
+                })
+
+                context("when datasource has been set", {
+                    beforeEach {
+                        proxyServer.dataSource = DataSourceFake()
+                        isStarted = proxyServer.startResponse(fileHandle: fileHandle)
+                    }
+
+                    it("starts", closure: {
+                        expect(isStarted).to(beTrue())
+                    })
+                })
+            })
         }
+    }
+
+}
+
+class DataSourceFake: SwiftyProxyServerDataSource {
+
+    func responseData() -> Data {
+        return "Fake response data".data(using: String.Encoding.utf8)!
     }
 
 }

@@ -108,6 +108,30 @@ open class SwiftyProxyServer {
 
     }
     
+    internal func startResponse(fileHandle: FileHandle) -> Bool {
+        guard let dataSource = dataSource else {
+            print("SwiftyProxyServer set dataSource and override responseData to feed data!")
+            return false
+        }
+        let responseCode = 200
+        let response = CFHTTPMessageCreateResponse(kCFAllocatorDefault, responseCode, nil, kCFHTTPVersion1_1)
+        let retainedResponse = response.takeRetainedValue()
+        CFHTTPMessageSetHeaderFieldValue(retainedResponse, "Content-Type" as CFString, "text/plain" as CFString)
+        let data = dataSource.responseData()
+        let dataLength = String(format: "%ld", CUnsignedLong(data.count))
+        CFHTTPMessageSetHeaderFieldValue(retainedResponse, "Content-Length" as CFString, dataLength as CFString)
+
+        guard let headerData = CFHTTPMessageCopySerializedMessage(retainedResponse) else {
+            print("SwiftyProxyServer can't serialize header data.")
+            return false
+        }
+
+        fileHandle.write(headerData.takeRetainedValue() as Data)
+        print(String(format: "SwiftyProxyServer writing data: %lu", CUnsignedLong(data.count)))
+        fileHandle.write(data)
+        return true
+    }
+    
     internal func stopReceiving(incomingFileHandle: FileHandle, stopHandling: Bool) {
         if stopHandling {
             print("SwiftyProxyServer: File closed and Incoming Request removed! \(requestType(fileHandle: incomingFileHandle, incomingRequests: incomingRequests) ??  "")")
