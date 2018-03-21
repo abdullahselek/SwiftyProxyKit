@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
         :tag => s.version.to_s
     }
     s.ios.deployment_target = '9.0'
-    s.source_files          = 'SwiftyProxyKit/*.swift'
+    s.source_files          = 'SwiftyProxyKit/**/*.swift'
     s.requires_arc          = true
 
 end

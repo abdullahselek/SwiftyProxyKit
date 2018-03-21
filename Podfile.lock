@@ -1,15 +1,22 @@
 PODS:
   - Nimble (7.0.3)
   - Quick (1.2.0)
+  - SwiftyProxyKit (0.1)
 
 DEPENDENCIES:
   - Nimble
   - Quick
+  - SwiftyProxyKit (from `.`)
+
+EXTERNAL SOURCES:
+  SwiftyProxyKit:
+    :path: .
 
 SPEC CHECKSUMS:
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  SwiftyProxyKit: bcf95ea10f69421232e23b8cd0f5ed0c1ec8aa1a
 
-PODFILE CHECKSUM: bce6db65a6095918ae3e5bb62f6519ad7d7f41be
+PODFILE CHECKSUM: 17f72cb59e7f9121e02ae6da97a26313299f41ca
 
 COCOAPODS: 1.4.0

@@ -521,7 +521,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7D368CB426DE3C13AB294EF5 /* Pods-SwiftyProxyKitTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SwiftyProxyKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -536,7 +535,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2CAFDF62EC745C41DE694466 /* Pods-SwiftyProxyKitTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SwiftyProxyKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

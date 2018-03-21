@@ -1,0 +1,6 @@
+framework module SwiftyProxyKit {
+  umbrella header "SwiftyProxyKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

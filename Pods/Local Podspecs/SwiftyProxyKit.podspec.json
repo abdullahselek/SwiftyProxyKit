@@ -1,0 +1,22 @@
+{
+  "name": "SwiftyProxyKit",
+  "version": "0.1",
+  "summary": "Local HTTP Server for iOS and OS X that can be used as a proxy server.",
+  "homepage": "https://github.com/abdullahselek/SwiftyProxyKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Abdullah Selek": "abdullahselek@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/abdullahselek/SwiftyProxyKit.git",
+    "tag": "0.1"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "SwiftyProxyKit/**/*.swift",
+  "requires_arc": true
+}
