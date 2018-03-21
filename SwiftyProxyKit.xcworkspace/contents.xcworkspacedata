@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Sample-iOS/Sample-iOS.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:SwiftyProxyKit.xcodeproj">
    </FileRef>
    <FileRef
