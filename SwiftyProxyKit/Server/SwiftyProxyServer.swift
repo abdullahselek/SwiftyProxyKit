@@ -105,7 +105,33 @@ open class SwiftyProxyServer {
     }
 
     @objc func receiveIncomingDataNotification(notification: NSNotification) {
-
+        guard let incomingFileHandle = notification.object as? FileHandle else {
+            return
+        }
+        let data = incomingFileHandle.availableData
+        if data.count == 0 {
+            print("Stop Receiving for file handle: no data: \(requestType(fileHandle: incomingFileHandle, incomingRequests: incomingRequests) ?? "")")
+            stopReceiving(incomingFileHandle: incomingFileHandle, stopHandling: false)
+            return
+        }
+        guard let incomingRequest = incomingRequests[incomingFileHandle] else {
+            print("Stop Receiving for file handle: no incoming request: \(requestType(fileHandle: incomingFileHandle, incomingRequests: incomingRequests) ?? "")")
+            stopReceiving(incomingFileHandle: incomingFileHandle, stopHandling: true)
+            return
+        }
+        data.withUnsafeBytes { (p: UnsafePointer<UInt8>) -> Void in
+            if !CFHTTPMessageAppendBytes(incomingRequest, p, data.count) {
+                print("Stop Receiving for file handle: append bytes failed: \(requestType(fileHandle: incomingFileHandle, incomingRequests: incomingRequests) ?? "")")
+                stopReceiving(incomingFileHandle: incomingFileHandle, stopHandling: true)
+                return
+            }
+        }
+        if CFHTTPMessageIsHeaderComplete(incomingRequest) {
+            _ = startResponse(fileHandle: incomingFileHandle)
+            print("Stop Receiving for file handle: header finished: \(requestType(fileHandle: incomingFileHandle, incomingRequests: incomingRequests) ?? "")")
+            stopReceiving(incomingFileHandle: incomingFileHandle, stopHandling: false)
+        }
+        incomingFileHandle.waitForDataInBackgroundAndNotify()
     }
     
     internal func startResponse(fileHandle: FileHandle) -> Bool {
