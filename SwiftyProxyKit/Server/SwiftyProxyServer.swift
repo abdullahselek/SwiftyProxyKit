@@ -27,7 +27,7 @@ import SystemConfiguration
 import CFNetwork
 
 public protocol SwiftyProxyServerDataSource: class {
-    func responseData() -> Data
+    func responseData() -> Data?
 }
 
 open class SwiftyProxyServer {
@@ -147,7 +147,10 @@ open class SwiftyProxyServer {
         let response = CFHTTPMessageCreateResponse(kCFAllocatorDefault, responseCode, nil, kCFHTTPVersion1_1)
         let retainedResponse = response.takeRetainedValue()
         CFHTTPMessageSetHeaderFieldValue(retainedResponse, "Content-Type" as CFString, "text/plain" as CFString)
-        let data = dataSource.responseData()
+        guard let data = dataSource.responseData() else {
+            print("SwiftyProxyServer no data provided from dataSource!")
+            return false
+        }
         let dataLength = String(format: "%ld", CUnsignedLong(data.count))
         CFHTTPMessageSetHeaderFieldValue(retainedResponse, "Content-Length" as CFString, dataLength as CFString)
 

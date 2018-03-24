@@ -133,7 +133,7 @@ class SwiftyProxyServerTests: QuickSpec {
 
 class DataSourceFake: SwiftyProxyServerDataSource {
 
-    func responseData() -> Data {
+    func responseData() -> Data? {
         return "Fake response data".data(using: String.Encoding.utf8)!
     }
 
